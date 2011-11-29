@@ -21,12 +21,12 @@ function XMLParser(xml) {
                 } else {
                     tmp.text = nodes[n].nodeValue;
                 }
-                tmp.attributes = attributesToJSONObject(nodes[n].attributes);
+                tmp["@attributes"] = attributesToJSONObject(nodes[n].attributes);
                 //tmp.toString = function() {return parent.text};
                 return tmp;
             } else {
                 tmp = nodesToJSONOnject(nodes[n].childNodes, {});
-                tmp.attributes = attributesToJSONObject(nodes[n].attributes);
+                tmp["@attributes"] = attributesToJSONObject(nodes[n].attributes);
             }
             
             if (!(nodeName in parent)) {
