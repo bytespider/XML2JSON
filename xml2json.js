@@ -3,7 +3,7 @@ function XMLParser(xml) {
         xml = DOMParser ? (new DOMParser()).parseFromString(xml, "text/xml") : ((new ActiveXObject("Microsoft.XMLDOM")).loadXML(xml));
     }
     
-    function nodesToJSONOnject(nodes, parent) {
+    function nodesToJSONObject(nodes, parent) {
         for (var n = 0; n < nodes.length; n++) {
             if (nodes[n].nodeType == 7) {
                 continue;
@@ -25,7 +25,7 @@ function XMLParser(xml) {
                 //tmp.toString = function() {return parent.text};
                 return tmp;
             } else {
-                tmp = nodesToJSONOnject(nodes[n].childNodes, {});
+                tmp = nodesToJSONObject(nodes[n].childNodes, {});
                 tmp["@attributes"] = attributesToJSONObject(nodes[n].attributes);
             }
             
@@ -53,6 +53,6 @@ function XMLParser(xml) {
     }
 
     this.toJSON = function () {
-        return nodesToJSONOnject(xml.childNodes, {});
+        return nodesToJSONObject(xml.childNodes, {});
     };
 }
